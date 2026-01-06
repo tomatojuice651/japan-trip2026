@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>東京家族旅遊 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 16px;
+            padding-bottom: 80px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            padding: 20px 0;
+        }
+        
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        /* 航班卡片 */
+        .flight-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .flight-card h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .flight-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .flight-info:last-child {
+            margin-bottom: 0;
+        }
+        
+        .airport {
+            text-align: center;
+        }
+        
+        .airport-code {
+            font-size: 28px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .airport-name {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .flight-middle {
+            text-align: center;
+            flex: 1;
+            padding: 0 16px;
+        }
+        
+        .flight-time {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .flight-arrow {
+            font-size: 24px;
+            color: #667eea;
+            margin: 4px 0;
+        }
+        
+        .flight-duration {
+            font-size: 13px;
+            color: #888;
+        }
+        
+        .flight-date {
+            background: #667eea;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+        
+        /* 接駁車卡片 */
+        .shuttle-card {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(17,153,142,0.3);
+        }
+        
+        .shuttle-card h2 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .shuttle-item {
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .shuttle-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .shuttle-icon {
+            font-size: 24px;
+        }
+        
+        .shuttle-text {
+            flex: 1;
+        }
+        
+        .shuttle-text strong {
+            display: block;
+            font-size: 18px;
+        }
+        
+        .shuttle-text span {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+        
+        /* 提醒卡片 */
+        .reminder-card {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(238,90,90,0.3);
+        }
+        
+        .reminder-card h2 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .reminder-item {
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .reminder-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .reminder-icon {
+            font-size: 24px;
+        }
+        
+        .reminder-text {
+            flex: 1;
+        }
+        
+        .reminder-text strong {
+            display: block;
+            font-size: 18px;
+        }
+        
+        .reminder-text span {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+        
+        /* 每日行程 */
+        .day-tabs {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 8px 0;
+            margin-bottom: 16px;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .day-tabs::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .day-tab {
+            background: rgba(255,255,255,0.3);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 20px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+        
+        .day-tab.active {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .day-content {
+            display: none;
+        }
+        
+        .day-content.active {
+            display: block;
+        }
+        
+        .schedule-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+        }
+        
+        .schedule-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px dashed #eee;
+        }
+        
+        .schedule-date {
+            background: #667eea;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .schedule-date .month {
+            font-size: 12px;
+        }
+        
+        .schedule-date .day {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .schedule-title {
+            flex: 1;
+        }
+        
+        .schedule-title h3 {
+            font-size: 22px;
+            color: #333;
+        }
+        
+        .schedule-title p {
+            color: #888;
+            font-size: 14px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 24px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 8px;
+            bottom: 8px;
+            width: 3px;
+            background: #e0e0e0;
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 8px;
+            width: 15px;
+            height: 15px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 6px rgba(102,126,234,0.4);
+        }
+        
+        .timeline-time {
+            font-size: 15px;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .timeline-place {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        .timeline-note {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .timeline-note.warning {
+            color: #ee5a5a;
+            font-weight: bold;
+        }
+        
+        /* 今日飯店卡片 */
+        .hotel-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 16px;
+            padding: 20px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(102,126,234,0.3);
+        }
+        
+        .hotel-card h2 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .hotel-info {
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        
+        .hotel-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .hotel-address {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 12px;
+        }
+        
+        .hotel-room {
+            background: rgba(255,255,255,0.3);
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hotel-room-icon {
+            font-size: 24px;
+        }
+        
+        .hotel-room-info {
+            flex: 1;
+        }
+        
+        .hotel-room-label {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        
+        .hotel-room-number {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        /* 底部導航 */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #888;
+            text-decoration: none;
+            font-size: 12px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 8px 16px;
+            transition: all 0.3s;
+        }
+        
+        .nav-item.active {
+            color: #667eea;
+        }
+        
+        .nav-item .icon {
+            font-size: 24px;
+        }
+        
+        /* 頁面切換 */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* 緊急聯絡 */
+        .emergency-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .emergency-card h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .emergency-item {
+            display: flex;
+            align-items: center;
+            padding: 14px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .emergency-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .emergency-icon {
+            font-size: 28px;
+            margin-right: 14px;
+        }
+        
+        .emergency-text {
+            flex: 1;
+        }
+        
+        .emergency-text strong {
+            display: block;
+            font-size: 18px;
+            color: #333;
+        }
+        
+        .emergency-text span {
+            font-size: 22px;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        /* 實用日文 */
+        .phrase-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .phrase-card h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 16px;
+        }
+        
+        .phrase-item {
+            padding: 14px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .phrase-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .phrase-zh {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 6px;
+        }
+        
+        .phrase-jp {
+            font-size: 20px;
+            color: #667eea;
+            margin-bottom: 4px;
+        }
+        
+        .phrase-pronounce {
+            font-size: 15px;
+            color: #888;
+        }
+        
+        /* Checklist */
+        .checklist-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .checklist-card h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .checklist-category {
+            margin-bottom: 20px;
+        }
+        
+        .checklist-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .checklist-category-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .checklist-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .checklist-item.checked {
+            background: #e8f5e9;
+        }
+        
+        .checklist-item.checked .checklist-box {
+            background: #4caf50;
+            border-color: #4caf50;
+        }
+        
+        .checklist-item.checked .checklist-box::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .checklist-item.checked .checklist-label {
+            text-decoration: line-through;
+            color: #888;
+        }
+        
+        .checklist-box {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .checklist-label {
+            font-size: 17px;
+            color: #333;
+            flex: 1;
+        }
+        
+        .checklist-progress {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+        
+        .checklist-progress-bar {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+        
+        .checklist-progress-text {
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🗼 東京家族旅遊</h1>
+            <p>2026.03.21 - 03.28</p>
+        </header>
+        
+        <!-- 首頁 -->
+        <div class="page active" id="page-home">
+            <!-- 航班資訊 -->
+            <div class="flight-card">
+                <h2>✈️ 航班資訊</h2>
+                
+                <div class="flight-date">去程 3/21（五）</div>
+                <div class="flight-info">
+                    <div class="airport">
+                        <div class="airport-code">TPE</div>
+                        <div class="airport-name">桃園二航</div>
+                    </div>
+                    <div class="flight-middle">
+                        <div class="flight-time">10:55 → 14:55</div>
+                        <div class="flight-arrow">✈️ ───→</div>
+                        <div class="flight-duration">飛行約 3 小時</div>
+                    </div>
+                    <div class="airport">
+                        <div class="airport-code">NRT</div>
+                        <div class="airport-name">成田二航</div>
+                    </div>
+                </div>
+                
+                <div class="flight-date">回程 3/28（五）</div>
+                <div class="flight-info">
+                    <div class="airport">
+                        <div class="airport-code">KIX</div>
+                        <div class="airport-name">關西一航</div>
+                    </div>
+                    <div class="flight-middle">
+                        <div class="flight-time">14:30 → 16:45</div>
+                        <div class="flight-arrow">✈️ ───→</div>
+                        <div class="flight-duration">飛行約 2.5 小時</div>
+                    </div>
+                    <div class="airport">
+                        <div class="airport-code">TPE</div>
+                        <div class="airport-name">桃園二航</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 接駁車資訊 -->
+            <div class="shuttle-card">
+                <h2>🚌 接駁車時間</h2>
+                
+                <div class="shuttle-item">
+                    <div class="shuttle-icon">🛫</div>
+                    <div class="shuttle-text">
+                        <strong>去程 3/21 早上 7:15 集合</strong>
+                        <span>搭車前往桃園機場</span>
+                    </div>
+                </div>
+                
+                <div class="shuttle-item">
+                    <div class="shuttle-icon">🛬</div>
+                    <div class="shuttle-text">
+                        <strong>回程 3/28 抵達後</strong>
+                        <span>桃園機場接駁回程（待確認）</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 重要提醒 -->
+            <div class="reminder-card">
+                <h2>⚠️ 重要集合時間</h2>
+                
+                <div class="reminder-item">
+                    <div class="reminder-icon">🚌</div>
+                    <div class="reminder-text">
+                        <strong>3/21 早上 7:15</strong>
+                        <span>集合搭接駁車去機場</span>
+                    </div>
+                </div>
+                
+                <div class="reminder-item">
+                    <div class="reminder-icon">🏨</div>
+                    <div class="reminder-text">
+                        <strong>每天早上 9:00</strong>
+                        <span>飯店大廳集合出發</span>
+                    </div>
+                </div>
+                
+                <div class="reminder-item">
+                    <div class="reminder-icon">🛬</div>
+                    <div class="reminder-text">
+                        <strong>3/28 早上（待確認）</strong>
+                        <span>前往關西機場</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 行程頁 -->
+        <div class="page" id="page-schedule">
+            <div class="day-tabs">
+                <button class="day-tab active" data-day="1">Day1</button>
+                <button class="day-tab" data-day="2">Day2</button>
+                <button class="day-tab" data-day="3">Day3</button>
+                <button class="day-tab" data-day="4">Day4</button>
+                <button class="day-tab" data-day="5">Day5</button>
+                <button class="day-tab" data-day="6">Day6</button>
+                <button class="day-tab" data-day="7">Day7</button>
+                <button class="day-tab" data-day="8">Day8</button>
+            </div>
+            
+            <!-- Day 1 -->
+            <div class="day-content active" data-day="1">
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <div class="schedule-date">
+                            <span class="month">3月</span>
+                            <span class="day">21</span>
+                        </div>
+                        <div class="schedule-title">
+                            <h3>出發日 ✈️</h3>
+                            <p>台灣 → 東京</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">07:15</div>
+                            <div class="timeline-place">集合搭接駁車</div>
+                            <div class="timeline-note warning">⚠️ 請勿遲到！</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">08:30</div>
+                            <div class="timeline-place">抵達桃園機場</div>
+                            <div class="timeline-note">第二航廈辦理登機</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">10:55</div>
+                            <div class="timeline-place">飛機起飛 ✈️</div>
+                            <div class="timeline-note">飛往東京成田機場</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">14:55</div>
+                            <div class="timeline-place">抵達成田機場</div>
+                            <div class="timeline-note">第二航廈，過海關領行李</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">16:30</div>
+                            <div class="timeline-place">前往飯店</div>
+                            <div class="timeline-note">搭車前往市區</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">18:00</div>
+                            <div class="timeline-place">入住飯店</div>
+                            <div class="timeline-note">放行李、休息一下</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">19:00</div>
+                            <div class="timeline-place">晚餐</div>
+                            <div class="timeline-note">附近覓食、逛逛</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 今日飯店 -->
+                <div class="hotel-card">
+                    <h2>🏨 今日飯店</h2>
+                    <div class="hotel-info">
+                        <div class="hotel-name">（待確認）</div>
+                        <div class="hotel-address">📍 地址待確認</div>
+                        <div class="hotel-room">
+                            <div class="hotel-room-icon">🚪</div>
+                            <div class="hotel-room-info">
+                                <div class="hotel-room-label">房號</div>
+                                <!-- ⬇️ 維護房號：修改這裡 ⬇️ -->
+                                <div class="hotel-room-number">--</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 2 -->
+            <div class="day-content" data-day="2">
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <div class="schedule-date">
+                            <span class="month">3月</span>
+                            <span class="day">22</span>
+                        </div>
+                        <div class="schedule-title">
+                            <h3>淺草雷門 ⛩️</h3>
+                            <p>下町風情一日遊</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">09:00</div>
+                            <div class="timeline-place">飯店大廳集合</div>
+                            <div class="timeline-note warning">⚠️ 準時集合！</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">10:00</div>
+                            <div class="timeline-place">淺草寺、雷門</div>
+                            <div class="timeline-note">拍大燈籠、抽籤、逛仲見世通</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">12:00</div>
+                            <div class="timeline-place">午餐：鰻魚飯</div>
+                            <div class="timeline-note">淺草今半 或 色川鰻魚</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">14:00</div>
+                            <div class="timeline-place">晴空塔</div>
+                            <div class="timeline-note">登塔看風景、商場購物</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">18:00</div>
+                            <div class="timeline-place">返回新宿</div>
+                            <div class="timeline-note">晚餐自理</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel-card">
+                    <h2>🏨 今日飯店</h2>
+                    <div class="hotel-info">
+                        <div class="hotel-name">新宿格拉斯麗酒店</div>
+                        <div class="hotel-address">📍 東京都新宿區歌舞伎町1-19-1</div>
+                        <div class="hotel-room">
+                            <div class="hotel-room-icon">🚪</div>
+                            <div class="hotel-room-info">
+                                <div class="hotel-room-label">房號</div>
+                                <!-- ⬇️ 維護房號：修改這裡 ⬇️ -->
+                                <div class="hotel-room-number">1205</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 3 -->
+            <div class="day-content" data-day="3">
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <div class="schedule-date">
+                            <span class="month">3月</span>
+                            <span class="day">23</span>
+                        </div>
+                        <div class="schedule-title">
+                            <h3>東京迪士尼 🏰</h3>
+                            <p>夢幻一日遊</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">07:30</div>
+                            <div class="timeline-place">飯店大廳集合</div>
+                            <div class="timeline-note warning">⚠️ 要早起！迪士尼人很多</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">09:00</div>
+                            <div class="timeline-place">迪士尼樂園開園</div>
+                            <div class="timeline-note">先衝熱門設施！</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">12:00</div>
+                            <div class="timeline-place">午餐</div>
+                            <div class="timeline-note">園區內餐廳</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">19:00</div>
+                            <div class="timeline-place">看遊行 🎆</div>
+                            <div class="timeline-note">夜間遊行，提早佔位</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">21:00</div>
+                            <div class="timeline-place">返回飯店</div>
+                            <div class="timeline-note">搭電車回新宿</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel-card">
+                    <h2>🏨 今日飯店</h2>
+                    <div class="hotel-info">
+                        <div class="hotel-name">新宿格拉斯麗酒店</div>
+                        <div class="hotel-address">📍 東京都新宿區歌舞伎町1-19-1</div>
+                        <div class="hotel-room">
+                            <div class="hotel-room-icon">🚪</div>
+                            <div class="hotel-room-info">
+                                <div class="hotel-room-label">房號</div>
+                                <!-- ⬇️ 維護房號：修改這裡 ⬇️ -->
+                                <div class="hotel-room-number">1205</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 4 -->
+            <div class="day-content" data-day="4">
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <div class="schedule-date">
+                            <span class="month">3月</span>
+                            <span class="day">24</span>
+                        </div>
+                        <div class="schedule-title">
+                            <h3>原宿・澀谷 🛍️</h3>
+                            <p>潮流購物日</p>
+                        </div>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">09:00</div>
+                            <div class="timeline-place">飯店集合出發</div>
+                            <div class="timeline-note">今天可以悠閒一點</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">10:00</div>
+                            <div class="timeline-place">明治神宮</div>
+                            <div class="timeline-note">參拜、走森林步道</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">12:00</div>
+                            <div class="timeline-place">竹下通</div>
+                            <div class="timeline-note">可麗餅、特色小店</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">15:00</div>
+                            <div class="timeline-place">澀谷</div>
+                            <div class="timeline-note">忠犬八公、十字路口、109百貨</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel-card">
+                    <h2>🏨 今日飯店</h2>
+                    <div class="hotel-info">
+                        <div class="hotel-name">新宿格拉斯麗酒店</div>
+                        <div class="hotel-address">📍 東京都新宿區歌舞伎町1-19-1</div>
+                        <div class="hotel-room">
+                            <div class="hotel-room-icon">🚪</div>
+                            <div class="hotel-room-info">
+                                <div class="hotel-room-label">房號</div>
+                                <!-- ⬇️ 維護房號：修改這裡 ⬇️ -->
+                                <div class="hotel-room-number">1205</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 5 -->
+            <div class="day-content" data-day="5">
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <div class="schedule-date">
+                            <span class="month">3月</span>
+                            <span class="day">25</span>
+                        </div>
+                        <div class="schedule-title">
+                            <h3>築地・銀座 🍣</h3>
+                            <p>美食購物日</p>
+                        </div>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">08:00</div>
+                            <div class="timeline-place">築地市場</div>
+                            <div class="timeline-note">新鮮海鮮、玉子燒</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">12:00</div>
+                            <div class="timeline-place">銀座</div>
+                            <div class="timeline-note">高級購物區</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">15:00</div>
+                            <div class="timeline-place">東京車站</div>
+                            <div class="timeline-note">一番街、拉麵街</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel-card">
+                    <h2>🏨 今日飯店</h2>
+                    <div class="hotel-info">
+                        <div class="hotel-name">新宿格拉斯麗酒店</div>
+                        <div class="hotel-address">📍 東京都新宿區歌舞伎町1-19-1</div>
+                        <div class="hotel-room">
+                            <div class="hotel-room-icon">🚪</div>
+                            <div class="hotel-room-info">
+                                <div class="hotel-room-label">房號</div>
+                                <!-- ⬇️ 維護房號：修改這裡 ⬇️ -->
+                                <div class="hotel-room-number">1205</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 6 -->
+            <div class="day-content" data-day="6">
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <div class="schedule-date">
+                            <span class="month">3月</span>
+                            <span class="day">26</span>
+                        </div>
+                        <div class="schedule-title">
+                            <h3>箱根一日遊 ♨️</h3>
+                            <p>溫泉放鬆日</p>
+                        </div>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">07:30</div>
+                            <div class="timeline-place">新宿出發</div>
+                            <div class="timeline-note warning">⚠️ 搭小田急浪漫特快</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">10:00</div>
+                            <div class="timeline-place">箱根周遊</div>
+                            <div class="timeline-note">登山電車、纜車、海賊船</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">15:00</div>
+                            <div class="timeline-place">溫泉體驗</div>
+                            <div class="timeline-note">泡湯放鬆</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">19:00</div>
+                            <div class="timeline-place">返回新宿</div>
+                            <div class="timeline-note">晚餐自理</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel-card">
+                    <h2>🏨 今日飯店</h2>
+                    <div class="hotel-info">
+                        <div class="hotel-name">新宿格拉斯麗酒店</div>
+                        <div class="hotel-address">📍 東京都新宿區歌舞伎町1-19-1</div>
+                        <div class="hotel-room">
+                            <div class="hotel-room-icon">🚪</div>
+                            <div class="hotel-room-info">
+                                <div class="hotel-room-label">房號</div>
+                                <!-- ⬇️ 維護房號：修改這裡 ⬇️ -->
+                                <div class="hotel-room-number">1205</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 7 -->
+            <div class="day-content" data-day="7">
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <div class="schedule-date">
+                            <span class="month">3月</span>
+                            <span class="day">27</span>
+                        </div>
+                        <div class="schedule-title">
+                            <h3>自由活動 🎯</h3>
+                            <p>最後採購日</p>
+                        </div>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">全天</div>
+                            <div class="timeline-place">自由活動</div>
+                            <div class="timeline-note">補貨、逛街、放鬆</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">推薦</div>
+                            <div class="timeline-place">阿美橫町</div>
+                            <div class="timeline-note">上野便宜購物</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">晚上</div>
+                            <div class="timeline-place">整理行李</div>
+                            <div class="timeline-note warning">⚠️ 明天要早起！</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel-card">
+                    <h2>🏨 今日飯店</h2>
+                    <div class="hotel-info">
+                        <div class="hotel-name">新宿格拉斯麗酒店</div>
+                        <div class="hotel-address">📍 東京都新宿區歌舞伎町1-19-1</div>
+                        <div class="hotel-room">
+                            <div class="hotel-room-icon">🚪</div>
+                            <div class="hotel-room-info">
+                                <div class="hotel-room-label">房號</div>
+                                <!-- ⬇️ 維護房號：修改這裡 ⬇️ -->
+                                <div class="hotel-room-number">1205</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 8 -->
+            <div class="day-content" data-day="8">
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <div class="schedule-date">
+                            <span class="month">3月</span>
+                            <span class="day">28</span>
+                        </div>
+                        <div class="schedule-title">
+                            <h3>回家囉 🏠</h3>
+                            <p>大阪 → 台灣</p>
+                        </div>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">早上</div>
+                            <div class="timeline-place">退房、前往機場</div>
+                            <div class="timeline-note warning">⚠️ 時間待確認</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">12:00</div>
+                            <div class="timeline-place">抵達關西機場</div>
+                            <div class="timeline-note">第一航廈，辦理登機、退稅</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">14:30</div>
+                            <div class="timeline-place">飛機起飛 ✈️</div>
+                            <div class="timeline-note">飛往台灣桃園機場</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">16:45</div>
+                            <div class="timeline-place">抵達桃園機場</div>
+                            <div class="timeline-note">第二航廈，領行李過海關</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">17:30</div>
+                            <div class="timeline-place">搭接駁車回程</div>
+                            <div class="timeline-note">回家啦！辛苦了 🎉</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 實用資訊頁 -->
+        <div class="page" id="page-info">
+            
+            <!-- 行前 Checklist -->
+            <div class="checklist-card">
+                <h2>✅ 行前準備清單</h2>
+                
+                <div class="checklist-progress-text">完成 <span id="checklist-count">0</span> / <span id="checklist-total">0</span> 項</div>
+                <div class="checklist-progress">
+                    <div class="checklist-progress-bar" id="checklist-bar" style="width: 0%"></div>
+                </div>
+                
+                <div class="checklist-category">
+                    <div class="checklist-category-title">📄 證件文件</div>
+                    <div class="checklist-item" data-id="passport">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">護照（效期6個月以上）</div>
+                    </div>
+                    <div class="checklist-item" data-id="id">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">身分證</div>
+                    </div>
+                    <div class="checklist-item" data-id="ticket">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">機票（電子機票截圖）</div>
+                    </div>
+                    <div class="checklist-item" data-id="hotel">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">飯店訂房確認單</div>
+                    </div>
+                    <div class="checklist-item" data-id="insurance">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">旅遊平安險</div>
+                    </div>
+                </div>
+                
+                <div class="checklist-category">
+                    <div class="checklist-category-title">💰 金錢相關</div>
+                    <div class="checklist-item" data-id="yen">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">日幣現金</div>
+                    </div>
+                    <div class="checklist-item" data-id="card">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">信用卡（開通海外刷卡）</div>
+                    </div>
+                    <div class="checklist-item" data-id="suica">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">Suica / PASMO 卡</div>
+                    </div>
+                </div>
+                
+                <div class="checklist-category">
+                    <div class="checklist-category-title">📱 3C 用品</div>
+                    <div class="checklist-item" data-id="phone">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">手機 + 充電線</div>
+                    </div>
+                    <div class="checklist-item" data-id="wifi">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">WiFi 分享器 / SIM 卡</div>
+                    </div>
+                    <div class="checklist-item" data-id="powerbank">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">行動電源</div>
+                    </div>
+                    <div class="checklist-item" data-id="adapter">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">轉接頭（日本110V雙扁插）</div>
+                    </div>
+                </div>
+                
+                <div class="checklist-category">
+                    <div class="checklist-category-title">👕 衣物用品</div>
+                    <div class="checklist-item" data-id="clothes">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">換洗衣物（8天份）</div>
+                    </div>
+                    <div class="checklist-item" data-id="jacket">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">外套（3月東京還冷）</div>
+                    </div>
+                    <div class="checklist-item" data-id="umbrella">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">摺疊傘</div>
+                    </div>
+                    <div class="checklist-item" data-id="shoes">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">好走的鞋子</div>
+                    </div>
+                </div>
+                
+                <div class="checklist-category">
+                    <div class="checklist-category-title">🧴 個人用品</div>
+                    <div class="checklist-item" data-id="medicine">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">個人藥品（感冒藥、腸胃藥）</div>
+                    </div>
+                    <div class="checklist-item" data-id="skincare">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">盥洗用品 / 保養品</div>
+                    </div>
+                    <div class="checklist-item" data-id="mask">
+                        <div class="checklist-box"></div>
+                        <div class="checklist-label">口罩</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="emergency-card">
+                <h2>🆘 緊急聯絡</h2>
+                
+                <a href="tel:110" class="emergency-item">
+                    <div class="emergency-icon">👮</div>
+                    <div class="emergency-text">
+                        <strong>日本警察</strong>
+                        <span>110</span>
+                    </div>
+                </a>
+                
+                <a href="tel:119" class="emergency-item">
+                    <div class="emergency-icon">🚑</div>
+                    <div class="emergency-text">
+                        <strong>救護車 / 消防</strong>
+                        <span>119</span>
+                    </div>
+                </a>
+                
+                <a href="tel:+81-3-2760-8801" class="emergency-item">
+                    <div class="emergency-icon">🇹🇼</div>
+                    <div class="emergency-text">
+                        <strong>台北駐日經濟文化代表處</strong>
+                        <span>03-2760-8801</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="phrase-card">
+                <h2>🗣️ 實用日文（用指的也行！）</h2>
+                
+                <div class="phrase-item">
+                    <div class="phrase-zh">謝謝</div>
+                    <div class="phrase-jp">ありがとうございます</div>
+                    <div class="phrase-pronounce">阿里嘎多勾咂以媽斯</div>
+                </div>
+                
+                <div class="phrase-item">
+                    <div class="phrase-zh">不好意思 / 借過</div>
+                    <div class="phrase-jp">すみません</div>
+                    <div class="phrase-pronounce">斯咪媽線</div>
+                </div>
+                
+                <div class="phrase-item">
+                    <div class="phrase-zh">這個多少錢？</div>
+                    <div class="phrase-jp">これはいくらですか？</div>
+                    <div class="phrase-pronounce">口類哇以庫拉爹斯嘎？</div>
+                </div>
+                
+                <div class="phrase-item">
+                    <div class="phrase-zh">請給我這個</div>
+                    <div class="phrase-jp">これをください</div>
+                    <div class="phrase-pronounce">口類喔庫搭賽</div>
+                </div>
+                
+                <div class="phrase-item">
+                    <div class="phrase-zh">廁所在哪裡？</div>
+                    <div class="phrase-jp">トイレはどこですか？</div>
+                    <div class="phrase-pronounce">偷伊類哇多口爹斯嘎？</div>
+                </div>
+                
+                <div class="phrase-item">
+                    <div class="phrase-zh">我是台灣人</div>
+                    <div class="phrase-jp">台湾人です</div>
+                    <div class="phrase-pronounce">台灣金爹斯</div>
+                </div>
+                
+                <div class="phrase-item">
+                    <div class="phrase-zh">可以刷卡嗎？</div>
+                    <div class="phrase-jp">カードは使えますか？</div>
+                    <div class="phrase-pronounce">卡多哇次卡艾媽斯嘎？</div>
+                </div>
+                
+                <div class="phrase-item">
+                    <div class="phrase-zh">請幫我免稅</div>
+                    <div class="phrase-jp">免税でお願いします</div>
+                    <div class="phrase-pronounce">門賊以爹喔內該以西媽斯</div>
+                </div>
+            </div>
+            
+            <div class="emergency-card">
+                <h2>📍 飯店資訊</h2>
+                <div class="emergency-item">
+                    <div class="emergency-icon">🏨</div>
+                    <div class="emergency-text">
+                        <strong>新宿格拉斯麗酒店</strong>
+                        <span style="font-size: 14px; color: #666;">東京都新宿區歌舞伎町1-19-1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部導航 -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" data-page="home">
+            <span class="icon">🏠</span>
+            <span>首頁</span>
+        </button>
+        <button class="nav-item" data-page="schedule">
+            <span class="icon">📅</span>
+            <span>行程</span>
+        </button>
+        <button class="nav-item" data-page="info">
+            <span class="icon">ℹ️</span>
+            <span>實用資訊</span>
+        </button>
+    </nav>
+    
+    <script>
+        // 頁面切換
+        document.querySelectorAll('.nav-item').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                
+                btn.classList.add('active');
+                const pageId = 'page-' + btn.dataset.page;
+                document.getElementById(pageId).classList.add('active');
+                
+                window.scrollTo(0, 0);
+            });
+        });
+        
+        // 日期切換
+        document.querySelectorAll('.day-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                const day = tab.dataset.day;
+                document.querySelector(`.day-content[data-day="${day}"]`).classList.add('active');
+            });
+        });
+        
+        // Checklist 功能
+        const checklistItems = document.querySelectorAll('.checklist-item');
+        const totalCount = checklistItems.length;
+        document.getElementById('checklist-total').textContent = totalCount;
+        
+        // 從 localStorage 讀取已勾選的項目
+        function loadChecklist() {
+            const saved = localStorage.getItem('tokyo-checklist');
+            if (saved) {
+                const checked = JSON.parse(saved);
+                checked.forEach(id => {
+                    const item = document.querySelector(`.checklist-item[data-id="${id}"]`);
+                    if (item) item.classList.add('checked');
+                });
+            }
+            updateProgress();
+        }
+        
+        // 儲存到 localStorage
+        function saveChecklist() {
+            const checked = [];
+            document.querySelectorAll('.checklist-item.checked').forEach(item => {
+                checked.push(item.dataset.id);
+            });
+            localStorage.setItem('tokyo-checklist', JSON.stringify(checked));
+        }
+        
+        // 更新進度條
+        function updateProgress() {
+            const checkedCount = document.querySelectorAll('.checklist-item.checked').length;
+            document.getElementById('checklist-count').textContent = checkedCount;
+            const percent = (checkedCount / totalCount) * 100;
+            document.getElementById('checklist-bar').style.width = percent + '%';
+        }
+        
+        // 點擊切換勾選
+        checklistItems.forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('checked');
+                saveChecklist();
+                updateProgress();
+            });
+        });
+        
+        // 載入時讀取
+        loadChecklist();
+    </script>
+</body>
+</html>
