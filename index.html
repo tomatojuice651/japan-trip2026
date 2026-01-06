@@ -667,8 +667,8 @@
             color: #888;
         }
         
-        /* Checklist */
-        .checklist-card {
+        /* 匯率換算計算機 */
+        .calculator-card {
             background: white;
             border-radius: 16px;
             padding: 20px;
@@ -676,7 +676,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         
-        .checklist-card h2 {
+        .calculator-card h2 {
             font-size: 20px;
             color: #333;
             margin-bottom: 16px;
@@ -685,97 +685,130 @@
             gap: 8px;
         }
         
-        .checklist-category {
+        .rate-setting {
             margin-bottom: 20px;
         }
         
-        .checklist-category:last-child {
-            margin-bottom: 0;
+        .rate-setting label {
+            display: block;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
         }
         
-        .checklist-category-title {
+        .rate-input-wrapper {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .rate-input-wrapper input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 18px;
+            text-align: center;
+        }
+        
+        .rate-input-wrapper input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .rate-btn {
+            padding: 12px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 10px;
             font-size: 16px;
             font-weight: bold;
-            color: #667eea;
-            margin-bottom: 10px;
-            padding-bottom: 6px;
-            border-bottom: 2px solid #667eea;
-        }
-        
-        .checklist-item {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            margin-bottom: 8px;
             cursor: pointer;
-            transition: all 0.2s;
         }
         
-        .checklist-item:last-child {
+        .rate-btn:active {
+            background: #5a6fd6;
+        }
+        
+        .converter-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .converter-box {
+            margin-bottom: 12px;
+        }
+        
+        .converter-box:last-of-type {
             margin-bottom: 0;
         }
         
-        .checklist-item.checked {
-            background: #e8f5e9;
-        }
-        
-        .checklist-item.checked .checklist-box {
-            background: #4caf50;
-            border-color: #4caf50;
-        }
-        
-        .checklist-item.checked .checklist-box::after {
-            content: '✓';
-            color: white;
+        .converter-box label {
+            display: block;
             font-size: 14px;
+            color: #666;
+            margin-bottom: 6px;
             font-weight: bold;
         }
         
-        .checklist-item.checked .checklist-label {
-            text-decoration: line-through;
-            color: #888;
-        }
-        
-        .checklist-box {
-            width: 24px;
-            height: 24px;
-            border: 2px solid #ccc;
-            border-radius: 6px;
-            margin-right: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        
-        .checklist-label {
-            font-size: 17px;
-            color: #333;
-            flex: 1;
-        }
-        
-        .checklist-progress {
-            background: #e0e0e0;
+        .converter-box input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
             border-radius: 10px;
-            height: 8px;
-            margin-bottom: 16px;
-            overflow: hidden;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: right;
         }
         
-        .checklist-progress-bar {
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            height: 100%;
-            border-radius: 10px;
-            transition: width 0.3s;
+        .converter-box input:focus {
+            outline: none;
+            border-color: #667eea;
         }
         
-        .checklist-progress-text {
+        .converter-arrow {
             text-align: center;
+            font-size: 24px;
+            color: #667eea;
+            margin: 8px 0;
+        }
+        
+        .quick-convert {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            padding: 16px;
+            color: white;
+        }
+        
+        .quick-title {
             font-size: 14px;
-            color: #888;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
+            opacity: 0.9;
+        }
+        
+        .quick-items {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .quick-item {
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .quick-item .yen {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .quick-item .twd {
+            font-size: 14px;
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -979,17 +1012,17 @@
                             <span class="day">22</span>
                         </div>
                         <div class="schedule-title">
-                            <h3>自由行動</h3>
-                            <p>就 對>ㄐㄧ>
+                            <h3>自由行動 🦙</h3>
+                            <p>看羊駝</p>
                             <span class="location-badge">📍 東京</span>
                         </div>
                     </div>
                     
                     <div class="timeline">
                         <div class="timeline-item">
-                            <div class="timeline-time">早上</div>
+                            <div class="timeline-time">全天</div>
                             <div class="timeline-place">自由行動</div>
-                        </div>
+                            <div class="timeline-note">依個人喜好安排</div>
                         </div>
                     </div>
                 </div>
@@ -1340,108 +1373,34 @@
         <!-- 實用資訊頁 -->
         <div class="page" id="page-info">
             
-            <!-- 行前 Checklist -->
-            <div class="checklist-card">
-                <h2>✅ 行前準備清單</h2>
+            <!-- 匯率換算計算機 -->
+            <div class="calculator-card">
+                <h2>💴 匯率換算</h2>
                 
-                <div class="checklist-progress-text">完成 <span id="checklist-count">0</span> / <span id="checklist-total">0</span> 項</div>
-                <div class="checklist-progress">
-                    <div class="checklist-progress-bar" id="checklist-bar" style="width: 0%"></div>
-                </div>
-                
-                <div class="checklist-category">
-                    <div class="checklist-category-title">📄 證件文件</div>
-                    <div class="checklist-item" data-id="passport">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">護照（效期6個月以上）</div>
-                    </div>
-                    <div class="checklist-item" data-id="id">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">身分證</div>
-                    </div>
-                    <div class="checklist-item" data-id="ticket">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">機票（電子機票截圖）</div>
-                    </div>
-                    <div class="checklist-item" data-id="hotel">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">飯店訂房確認單</div>
-                    </div>
-                    <div class="checklist-item" data-id="insurance">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">旅遊平安險</div>
+                <div class="rate-setting">
+                    <label>目前匯率（1日圓 = ?台幣）</label>
+                    <div class="rate-input-wrapper">
+                        <input type="number" id="exchange-rate" value="0.21" step="0.01" min="0.01">
+                        <button class="rate-btn" onclick="saveRate()">儲存</button>
                     </div>
                 </div>
                 
-                <div class="checklist-category">
-                    <div class="checklist-category-title">💰 金錢相關</div>
-                    <div class="checklist-item" data-id="yen">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">日幣現金</div>
+                <div class="converter-section">
+                    <div class="converter-box">
+                        <label>日幣 ¥</label>
+                        <input type="number" id="yen-input" placeholder="輸入日幣金額" oninput="convertToTWD()">
                     </div>
-                    <div class="checklist-item" data-id="card">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">信用卡（開通海外刷卡）</div>
-                    </div>
-                    <div class="checklist-item" data-id="suica">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">Suica / ICOCA 卡</div>
+                    <div class="converter-arrow">⇅</div>
+                    <div class="converter-box">
+                        <label>台幣 NT$</label>
+                        <input type="number" id="twd-input" placeholder="輸入台幣金額" oninput="convertToYen()">
                     </div>
                 </div>
                 
-                <div class="checklist-category">
-                    <div class="checklist-category-title">📱 3C 用品</div>
-                    <div class="checklist-item" data-id="phone">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">手機 + 充電線</div>
-                    </div>
-                    <div class="checklist-item" data-id="wifi">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">WiFi 分享器 / SIM 卡</div>
-                    </div>
-                    <div class="checklist-item" data-id="powerbank">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">行動電源</div>
-                    </div>
-                    <div class="checklist-item" data-id="adapter">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">轉接頭（日本110V雙扁插）</div>
-                    </div>
-                </div>
-                
-                <div class="checklist-category">
-                    <div class="checklist-category-title">👕 衣物用品</div>
-                    <div class="checklist-item" data-id="clothes">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">換洗衣物（8天份）</div>
-                    </div>
-                    <div class="checklist-item" data-id="jacket">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">外套（3月日本還冷）</div>
-                    </div>
-                    <div class="checklist-item" data-id="umbrella">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">摺疊傘</div>
-                    </div>
-                    <div class="checklist-item" data-id="shoes">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">好走的鞋子</div>
-                    </div>
-                </div>
-                
-                <div class="checklist-category">
-                    <div class="checklist-category-title">🧴 個人用品</div>
-                    <div class="checklist-item" data-id="medicine">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">個人藥品（感冒藥、腸胃藥）</div>
-                    </div>
-                    <div class="checklist-item" data-id="skincare">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">盥洗用品 / 保養品</div>
-                    </div>
-                    <div class="checklist-item" data-id="mask">
-                        <div class="checklist-box"></div>
-                        <div class="checklist-label">口罩</div>
+                <div class="quick-convert">
+                    <div class="quick-title">快速換算</div>
+                    <div class="quick-items" id="quick-items">
+                        <!-- 會由 JS 動態產生 -->
                     </div>
                 </div>
             </div>
@@ -1579,47 +1538,64 @@
             });
         });
         
-        // Checklist 功能
-        const checklistItems = document.querySelectorAll('.checklist-item');
-        const totalCount = checklistItems.length;
-        document.getElementById('checklist-total').textContent = totalCount;
+        // 匯率換算功能
+        const quickAmounts = [100, 500, 1000, 3000, 5000, 10000];
         
-        function loadChecklist() {
-            const saved = localStorage.getItem('japan-trip-checklist');
+        function loadRate() {
+            const saved = localStorage.getItem('japan-trip-rate');
             if (saved) {
-                const checked = JSON.parse(saved);
-                checked.forEach(id => {
-                    const item = document.querySelector(`.checklist-item[data-id="${id}"]`);
-                    if (item) item.classList.add('checked');
-                });
+                document.getElementById('exchange-rate').value = saved;
             }
-            updateProgress();
+            updateQuickConvert();
         }
         
-        function saveChecklist() {
-            const checked = [];
-            document.querySelectorAll('.checklist-item.checked').forEach(item => {
-                checked.push(item.dataset.id);
-            });
-            localStorage.setItem('japan-trip-checklist', JSON.stringify(checked));
+        function saveRate() {
+            const rate = document.getElementById('exchange-rate').value;
+            localStorage.setItem('japan-trip-rate', rate);
+            updateQuickConvert();
+            alert('匯率已儲存！');
         }
         
-        function updateProgress() {
-            const checkedCount = document.querySelectorAll('.checklist-item.checked').length;
-            document.getElementById('checklist-count').textContent = checkedCount;
-            const percent = (checkedCount / totalCount) * 100;
-            document.getElementById('checklist-bar').style.width = percent + '%';
+        function getRate() {
+            return parseFloat(document.getElementById('exchange-rate').value) || 0.21;
         }
         
-        checklistItems.forEach(item => {
-            item.addEventListener('click', () => {
-                item.classList.toggle('checked');
-                saveChecklist();
-                updateProgress();
-            });
-        });
+        function convertToTWD() {
+            const yen = parseFloat(document.getElementById('yen-input').value);
+            if (!isNaN(yen)) {
+                const twd = Math.round(yen * getRate());
+                document.getElementById('twd-input').value = twd;
+            } else {
+                document.getElementById('twd-input').value = '';
+            }
+        }
         
-        loadChecklist();
+        function convertToYen() {
+            const twd = parseFloat(document.getElementById('twd-input').value);
+            if (!isNaN(twd)) {
+                const yen = Math.round(twd / getRate());
+                document.getElementById('yen-input').value = yen;
+            } else {
+                document.getElementById('yen-input').value = '';
+            }
+        }
+        
+        function updateQuickConvert() {
+            const rate = getRate();
+            const container = document.getElementById('quick-items');
+            container.innerHTML = quickAmounts.map(yen => {
+                const twd = Math.round(yen * rate);
+                return `<div class="quick-item">
+                    <div class="yen">¥${yen.toLocaleString()}</div>
+                    <div class="twd">≈ NT$${twd.toLocaleString()}</div>
+                </div>`;
+            }).join('');
+        }
+        
+        // 匯率輸入變更時即時更新
+        document.getElementById('exchange-rate').addEventListener('input', updateQuickConvert);
+        
+        loadRate();
     </script>
 </body>
 </html>
