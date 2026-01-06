@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東京家族旅遊 2026</title>
+    <title>日本家族旅遊 2026</title>
     <style>
         * {
             margin: 0;
@@ -172,17 +172,17 @@
             opacity: 0.9;
         }
         
-        /* 提醒卡片 */
-        .reminder-card {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+        /* 重要景點時間卡片 */
+        .highlight-card {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
             border-radius: 16px;
             padding: 20px;
             margin-bottom: 16px;
             color: white;
-            box-shadow: 0 4px 15px rgba(238,90,90,0.3);
+            box-shadow: 0 4px 15px rgba(245,87,108,0.3);
         }
         
-        .reminder-card h2 {
+        .highlight-card h2 {
             font-size: 20px;
             margin-bottom: 12px;
             display: flex;
@@ -190,7 +190,7 @@
             gap: 8px;
         }
         
-        .reminder-item {
+        .highlight-item {
             background: rgba(255,255,255,0.2);
             border-radius: 12px;
             padding: 14px;
@@ -200,24 +200,24 @@
             gap: 12px;
         }
         
-        .reminder-item:last-child {
+        .highlight-item:last-child {
             margin-bottom: 0;
         }
         
-        .reminder-icon {
+        .highlight-icon {
             font-size: 24px;
         }
         
-        .reminder-text {
+        .highlight-text {
             flex: 1;
         }
         
-        .reminder-text strong {
+        .highlight-text strong {
             display: block;
             font-size: 18px;
         }
         
-        .reminder-text span {
+        .highlight-text span {
             font-size: 15px;
             opacity: 0.9;
         }
@@ -240,13 +240,26 @@
             background: rgba(255,255,255,0.3);
             border: none;
             border-radius: 12px;
-            padding: 12px 20px;
+            padding: 12px 16px;
             color: white;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             white-space: nowrap;
             transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 70px;
+        }
+        
+        .day-tab .day-num {
+            font-size: 16px;
+        }
+        
+        .day-tab .day-date {
+            font-size: 12px;
+            opacity: 0.8;
         }
         
         .day-tab.active {
@@ -315,6 +328,27 @@
             font-size: 14px;
         }
         
+        .location-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 4px;
+        }
+        
+        .location-badge.osaka {
+            background: #fff3e0;
+            color: #e65100;
+        }
+        
+        .location-badge.kyoto {
+            background: #fce4ec;
+            color: #c2185b;
+        }
+        
         .timeline {
             position: relative;
             padding-left: 24px;
@@ -353,11 +387,20 @@
             box-shadow: 0 2px 6px rgba(102,126,234,0.4);
         }
         
+        .timeline-item.highlight::before {
+            background: #f5576c;
+            box-shadow: 0 2px 6px rgba(245,87,108,0.4);
+        }
+        
         .timeline-time {
             font-size: 15px;
             color: #667eea;
             font-weight: bold;
             margin-bottom: 4px;
+        }
+        
+        .timeline-item.highlight .timeline-time {
+            color: #f5576c;
         }
         
         .timeline-place {
@@ -698,7 +741,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>🗼 東京家族旅遊</h1>
+            <h1>🗾 日本家族旅遊</h1>
             <p>2026.03.21 - 03.28</p>
         </header>
         
@@ -708,7 +751,7 @@
             <div class="flight-card">
                 <h2>✈️ 航班資訊</h2>
                 
-                <div class="flight-date">去程 3/21（五）</div>
+                <div class="flight-date">去程 3/21（六）</div>
                 <div class="flight-info">
                     <div class="airport">
                         <div class="airport-code">TPE</div>
@@ -725,7 +768,7 @@
                     </div>
                 </div>
                 
-                <div class="flight-date">回程 3/28（五）</div>
+                <div class="flight-date">回程 3/28（六）</div>
                 <div class="flight-info">
                     <div class="airport">
                         <div class="airport-code">KIX</div>
@@ -745,50 +788,42 @@
             
             <!-- 接駁車資訊 -->
             <div class="shuttle-card">
-                <h2>🚌 接駁車時間</h2>
+                <h2>🚌 台灣接駁車</h2>
                 
                 <div class="shuttle-item">
                     <div class="shuttle-icon">🛫</div>
                     <div class="shuttle-text">
-                        <strong>去程 3/21 早上 7:15 集合</strong>
-                        <span>搭車前往桃園機場</span>
-                    </div>
-                </div>
-                
-                <div class="shuttle-item">
-                    <div class="shuttle-icon">🛬</div>
-                    <div class="shuttle-text">
-                        <strong>回程 3/28 抵達後</strong>
-                        <span>桃園機場接駁回程（待確認）</span>
+                        <strong>去程 3/21 早上 7:15</strong>
+                        <span>集合出發 → 桃園機場</span>
                     </div>
                 </div>
             </div>
             
-            <!-- 重要提醒 -->
-            <div class="reminder-card">
-                <h2>⚠️ 重要集合時間</h2>
+            <!-- 重要景點時間 -->
+            <div class="highlight-card">
+                <h2>⭐ 重要預約 / 車次時間</h2>
                 
-                <div class="reminder-item">
-                    <div class="reminder-icon">🚌</div>
-                    <div class="reminder-text">
-                        <strong>3/21 早上 7:15</strong>
-                        <span>集合搭接駁車去機場</span>
+                <div class="highlight-item">
+                    <div class="highlight-icon">🚄</div>
+                    <div class="highlight-text">
+                        <strong>3/24 新幹線往關西</strong>
+                        <span>時間待確認</span>
                     </div>
                 </div>
                 
-                <div class="reminder-item">
-                    <div class="reminder-icon">🏨</div>
-                    <div class="reminder-text">
-                        <strong>每天早上 9:00</strong>
-                        <span>飯店大廳集合出發</span>
+                <div class="highlight-item">
+                    <div class="highlight-icon">🎮</div>
+                    <div class="highlight-text">
+                        <strong>3/25 任天堂博物館</strong>
+                        <span>11:00 入場</span>
                     </div>
                 </div>
                 
-                <div class="reminder-item">
-                    <div class="reminder-icon">🛬</div>
-                    <div class="reminder-text">
-                        <strong>3/28 早上（待確認）</strong>
-                        <span>前往關西機場</span>
+                <div class="highlight-item">
+                    <div class="highlight-icon">⚡</div>
+                    <div class="highlight-text">
+                        <strong>3/24 寶可夢咖啡廳</strong>
+                        <span>時間待確認</span>
                     </div>
                 </div>
             </div>
@@ -797,17 +832,41 @@
         <!-- 行程頁 -->
         <div class="page" id="page-schedule">
             <div class="day-tabs">
-                <button class="day-tab active" data-day="1">Day1</button>
-                <button class="day-tab" data-day="2">Day2</button>
-                <button class="day-tab" data-day="3">Day3</button>
-                <button class="day-tab" data-day="4">Day4</button>
-                <button class="day-tab" data-day="5">Day5</button>
-                <button class="day-tab" data-day="6">Day6</button>
-                <button class="day-tab" data-day="7">Day7</button>
-                <button class="day-tab" data-day="8">Day8</button>
+                <button class="day-tab active" data-day="1">
+                    <span class="day-num">D1</span>
+                    <span class="day-date">3/21六</span>
+                </button>
+                <button class="day-tab" data-day="2">
+                    <span class="day-num">D2</span>
+                    <span class="day-date">3/22日</span>
+                </button>
+                <button class="day-tab" data-day="3">
+                    <span class="day-num">D3</span>
+                    <span class="day-date">3/23一</span>
+                </button>
+                <button class="day-tab" data-day="4">
+                    <span class="day-num">D4</span>
+                    <span class="day-date">3/24二</span>
+                </button>
+                <button class="day-tab" data-day="5">
+                    <span class="day-num">D5</span>
+                    <span class="day-date">3/25三</span>
+                </button>
+                <button class="day-tab" data-day="6">
+                    <span class="day-num">D6</span>
+                    <span class="day-date">3/26四</span>
+                </button>
+                <button class="day-tab" data-day="7">
+                    <span class="day-num">D7</span>
+                    <span class="day-date">3/27五</span>
+                </button>
+                <button class="day-tab" data-day="8">
+                    <span class="day-num">D8</span>
+                    <span class="day-date">3/28六</span>
+                </button>
             </div>
             
-            <!-- Day 1 -->
+            <!-- Day 1 - 3/21 -->
             <div class="day-content active" data-day="1">
                 <div class="schedule-card">
                     <div class="schedule-header">
@@ -818,11 +877,12 @@
                         <div class="schedule-title">
                             <h3>出發日 ✈️</h3>
                             <p>台灣 → 東京</p>
+                            <span class="location-badge">📍 東京</span>
                         </div>
                     </div>
                     
                     <div class="timeline">
-                        <div class="timeline-item">
+                        <div class="timeline-item highlight">
                             <div class="timeline-time">07:15</div>
                             <div class="timeline-place">集合搭接駁車</div>
                             <div class="timeline-note warning">⚠️ 請勿遲到！</div>
@@ -845,7 +905,7 @@
                         <div class="timeline-item">
                             <div class="timeline-time">16:30</div>
                             <div class="timeline-place">前往飯店</div>
-                            <div class="timeline-note">搭車前往市區</div>
+                            <div class="timeline-note">搭車前往東京市區</div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-time">18:00</div>
@@ -853,9 +913,9 @@
                             <div class="timeline-note">放行李、休息一下</div>
                         </div>
                         <div class="timeline-item">
-                            <div class="timeline-time">19:00</div>
-                            <div class="timeline-place">晚餐</div>
-                            <div class="timeline-note">附近覓食、逛逛</div>
+                            <div class="timeline-time">晚上</div>
+                            <div class="timeline-place">逛神田 🌙</div>
+                            <div class="timeline-note">晚餐、散步</div>
                         </div>
                     </div>
                 </div>
@@ -864,7 +924,8 @@
                 <div class="hotel-card">
                     <h2>🏨 今日飯店</h2>
                     <div class="hotel-info">
-                        <div class="hotel-name">（待確認）</div>
+                        <!-- ⬇️ 維護飯店名稱：修改這裡 ⬇️ -->
+                        <div class="hotel-name">東京飯店（待確認）</div>
                         <div class="hotel-address">📍 地址待確認</div>
                         <div class="hotel-room">
                             <div class="hotel-room-icon">🚪</div>
@@ -878,7 +939,7 @@
                 </div>
             </div>
             
-            <!-- Day 2 -->
+            <!-- Day 2 - 3/22 -->
             <div class="day-content" data-day="2">
                 <div class="schedule-card">
                     <div class="schedule-header">
@@ -887,36 +948,27 @@
                             <span class="day">22</span>
                         </div>
                         <div class="schedule-title">
-                            <h3>淺草雷門 ⛩️</h3>
-                            <p>下町風情一日遊</p>
+                            <h3>看羊駝 🦙</h3>
+                            <p>療癒動物日</p>
+                            <span class="location-badge">📍 東京</span>
                         </div>
                     </div>
                     
                     <div class="timeline">
                         <div class="timeline-item">
-                            <div class="timeline-time">09:00</div>
-                            <div class="timeline-place">飯店大廳集合</div>
-                            <div class="timeline-note warning">⚠️ 準時集合！</div>
+                            <div class="timeline-time">早上</div>
+                            <div class="timeline-place">出發看羊駝</div>
+                            <div class="timeline-note">詳細地點待確認</div>
                         </div>
                         <div class="timeline-item">
-                            <div class="timeline-time">10:00</div>
-                            <div class="timeline-place">淺草寺、雷門</div>
-                            <div class="timeline-note">拍大燈籠、抽籤、逛仲見世通</div>
+                            <div class="timeline-time">下午</div>
+                            <div class="timeline-place">自由活動</div>
+                            <div class="timeline-note">逛街、休息</div>
                         </div>
                         <div class="timeline-item">
-                            <div class="timeline-time">12:00</div>
-                            <div class="timeline-place">午餐：鰻魚飯</div>
-                            <div class="timeline-note">淺草今半 或 色川鰻魚</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">14:00</div>
-                            <div class="timeline-place">晴空塔</div>
-                            <div class="timeline-note">登塔看風景、商場購物</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">18:00</div>
-                            <div class="timeline-place">返回新宿</div>
-                            <div class="timeline-note">晚餐自理</div>
+                            <div class="timeline-time">晚上</div>
+                            <div class="timeline-place">晚餐</div>
+                            <div class="timeline-note">待安排</div>
                         </div>
                     </div>
                 </div>
@@ -924,21 +976,20 @@
                 <div class="hotel-card">
                     <h2>🏨 今日飯店</h2>
                     <div class="hotel-info">
-                        <div class="hotel-name">新宿格拉斯麗酒店</div>
-                        <div class="hotel-address">📍 東京都新宿區歌舞伎町1-19-1</div>
+                        <div class="hotel-name">東京飯店（待確認）</div>
+                        <div class="hotel-address">📍 地址待確認</div>
                         <div class="hotel-room">
                             <div class="hotel-room-icon">🚪</div>
                             <div class="hotel-room-info">
                                 <div class="hotel-room-label">房號</div>
-                                <!-- ⬇️ 維護房號：修改這裡 ⬇️ -->
-                                <div class="hotel-room-number">1205</div>
+                                <div class="hotel-room-number">--</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Day 3 -->
+            <!-- Day 3 - 3/23 -->
             <div class="day-content" data-day="3">
                 <div class="schedule-card">
                     <div class="schedule-header">
@@ -947,192 +998,31 @@
                             <span class="day">23</span>
                         </div>
                         <div class="schedule-title">
-                            <h3>東京迪士尼 🏰</h3>
-                            <p>夢幻一日遊</p>
+                            <h3>荒川線一日遊 🚃</h3>
+                            <p>下町懷舊風情</p>
+                            <span class="location-badge">📍 東京</span>
                         </div>
                     </div>
                     
                     <div class="timeline">
                         <div class="timeline-item">
-                            <div class="timeline-time">07:30</div>
-                            <div class="timeline-place">飯店大廳集合</div>
-                            <div class="timeline-note warning">⚠️ 要早起！迪士尼人很多</div>
+                            <div class="timeline-time">上午</div>
+                            <div class="timeline-place">飛鳥山公園 🌸</div>
+                            <div class="timeline-note">賞櫻名所、搭單軌電車</div>
                         </div>
                         <div class="timeline-item">
-                            <div class="timeline-time">09:00</div>
-                            <div class="timeline-place">迪士尼樂園開園</div>
-                            <div class="timeline-note">先衝熱門設施！</div>
+                            <div class="timeline-time">中午</div>
+                            <div class="timeline-place">巢鴨</div>
+                            <div class="timeline-note">老人原宿、地藏通商店街</div>
                         </div>
                         <div class="timeline-item">
-                            <div class="timeline-time">12:00</div>
-                            <div class="timeline-place">午餐</div>
-                            <div class="timeline-note">園區內餐廳</div>
+                            <div class="timeline-time">下午</div>
+                            <div class="timeline-place">荒川線沿線</div>
+                            <div class="timeline-note">懷舊路面電車體驗</div>
                         </div>
                         <div class="timeline-item">
-                            <div class="timeline-time">19:00</div>
-                            <div class="timeline-place">看遊行 🎆</div>
-                            <div class="timeline-note">夜間遊行，提早佔位</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">21:00</div>
+                            <div class="timeline-time">晚上</div>
                             <div class="timeline-place">返回飯店</div>
-                            <div class="timeline-note">搭電車回新宿</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="hotel-card">
-                    <h2>🏨 今日飯店</h2>
-                    <div class="hotel-info">
-                        <div class="hotel-name">新宿格拉斯麗酒店</div>
-                        <div class="hotel-address">📍 東京都新宿區歌舞伎町1-19-1</div>
-                        <div class="hotel-room">
-                            <div class="hotel-room-icon">🚪</div>
-                            <div class="hotel-room-info">
-                                <div class="hotel-room-label">房號</div>
-                                <!-- ⬇️ 維護房號：修改這裡 ⬇️ -->
-                                <div class="hotel-room-number">1205</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Day 4 -->
-            <div class="day-content" data-day="4">
-                <div class="schedule-card">
-                    <div class="schedule-header">
-                        <div class="schedule-date">
-                            <span class="month">3月</span>
-                            <span class="day">24</span>
-                        </div>
-                        <div class="schedule-title">
-                            <h3>原宿・澀谷 🛍️</h3>
-                            <p>潮流購物日</p>
-                        </div>
-                    </div>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-time">09:00</div>
-                            <div class="timeline-place">飯店集合出發</div>
-                            <div class="timeline-note">今天可以悠閒一點</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">10:00</div>
-                            <div class="timeline-place">明治神宮</div>
-                            <div class="timeline-note">參拜、走森林步道</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">12:00</div>
-                            <div class="timeline-place">竹下通</div>
-                            <div class="timeline-note">可麗餅、特色小店</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">15:00</div>
-                            <div class="timeline-place">澀谷</div>
-                            <div class="timeline-note">忠犬八公、十字路口、109百貨</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="hotel-card">
-                    <h2>🏨 今日飯店</h2>
-                    <div class="hotel-info">
-                        <div class="hotel-name">新宿格拉斯麗酒店</div>
-                        <div class="hotel-address">📍 東京都新宿區歌舞伎町1-19-1</div>
-                        <div class="hotel-room">
-                            <div class="hotel-room-icon">🚪</div>
-                            <div class="hotel-room-info">
-                                <div class="hotel-room-label">房號</div>
-                                <!-- ⬇️ 維護房號：修改這裡 ⬇️ -->
-                                <div class="hotel-room-number">1205</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Day 5 -->
-            <div class="day-content" data-day="5">
-                <div class="schedule-card">
-                    <div class="schedule-header">
-                        <div class="schedule-date">
-                            <span class="month">3月</span>
-                            <span class="day">25</span>
-                        </div>
-                        <div class="schedule-title">
-                            <h3>築地・銀座 🍣</h3>
-                            <p>美食購物日</p>
-                        </div>
-                    </div>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-time">08:00</div>
-                            <div class="timeline-place">築地市場</div>
-                            <div class="timeline-note">新鮮海鮮、玉子燒</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">12:00</div>
-                            <div class="timeline-place">銀座</div>
-                            <div class="timeline-note">高級購物區</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">15:00</div>
-                            <div class="timeline-place">東京車站</div>
-                            <div class="timeline-note">一番街、拉麵街</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="hotel-card">
-                    <h2>🏨 今日飯店</h2>
-                    <div class="hotel-info">
-                        <div class="hotel-name">新宿格拉斯麗酒店</div>
-                        <div class="hotel-address">📍 東京都新宿區歌舞伎町1-19-1</div>
-                        <div class="hotel-room">
-                            <div class="hotel-room-icon">🚪</div>
-                            <div class="hotel-room-info">
-                                <div class="hotel-room-label">房號</div>
-                                <!-- ⬇️ 維護房號：修改這裡 ⬇️ -->
-                                <div class="hotel-room-number">1205</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Day 6 -->
-            <div class="day-content" data-day="6">
-                <div class="schedule-card">
-                    <div class="schedule-header">
-                        <div class="schedule-date">
-                            <span class="month">3月</span>
-                            <span class="day">26</span>
-                        </div>
-                        <div class="schedule-title">
-                            <h3>箱根一日遊 ♨️</h3>
-                            <p>溫泉放鬆日</p>
-                        </div>
-                    </div>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-time">07:30</div>
-                            <div class="timeline-place">新宿出發</div>
-                            <div class="timeline-note warning">⚠️ 搭小田急浪漫特快</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">10:00</div>
-                            <div class="timeline-place">箱根周遊</div>
-                            <div class="timeline-note">登山電車、纜車、海賊船</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">15:00</div>
-                            <div class="timeline-place">溫泉體驗</div>
-                            <div class="timeline-note">泡湯放鬆</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">19:00</div>
-                            <div class="timeline-place">返回新宿</div>
                             <div class="timeline-note">晚餐自理</div>
                         </div>
                     </div>
@@ -1141,21 +1031,185 @@
                 <div class="hotel-card">
                     <h2>🏨 今日飯店</h2>
                     <div class="hotel-info">
-                        <div class="hotel-name">新宿格拉斯麗酒店</div>
-                        <div class="hotel-address">📍 東京都新宿區歌舞伎町1-19-1</div>
+                        <div class="hotel-name">東京飯店（待確認）</div>
+                        <div class="hotel-address">📍 地址待確認</div>
                         <div class="hotel-room">
                             <div class="hotel-room-icon">🚪</div>
                             <div class="hotel-room-info">
                                 <div class="hotel-room-label">房號</div>
-                                <!-- ⬇️ 維護房號：修改這裡 ⬇️ -->
-                                <div class="hotel-room-number">1205</div>
+                                <div class="hotel-room-number">--</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Day 7 -->
+            <!-- Day 4 - 3/24 -->
+            <div class="day-content" data-day="4">
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <div class="schedule-date">
+                            <span class="month">3月</span>
+                            <span class="day">24</span>
+                        </div>
+                        <div class="schedule-title">
+                            <h3>移動日 🚄</h3>
+                            <p>東京 → 關西</p>
+                            <span class="location-badge kyoto">📍 京都/大阪</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">上午</div>
+                            <div class="timeline-place">東京車站買買 🛍️</div>
+                            <div class="timeline-note">東京一番街、伴手禮</div>
+                        </div>
+                        <div class="timeline-item highlight">
+                            <div class="timeline-time">待確認</div>
+                            <div class="timeline-place">搭新幹線往關西 🚄</div>
+                            <div class="timeline-note warning">⚠️ 車次時間待確認</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">下午</div>
+                            <div class="timeline-place">抵達關西</div>
+                            <div class="timeline-note">入住飯店</div>
+                        </div>
+                        <div class="timeline-item highlight">
+                            <div class="timeline-time">晚上</div>
+                            <div class="timeline-place">寶可夢咖啡廳 ⚡</div>
+                            <div class="timeline-note warning">⚠️ 預約時間待確認</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel-card">
+                    <h2>🏨 今日飯店</h2>
+                    <div class="hotel-info">
+                        <div class="hotel-name">關西飯店（待確認）</div>
+                        <div class="hotel-address">📍 地址待確認</div>
+                        <div class="hotel-room">
+                            <div class="hotel-room-icon">🚪</div>
+                            <div class="hotel-room-info">
+                                <div class="hotel-room-label">房號</div>
+                                <div class="hotel-room-number">--</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 5 - 3/25 -->
+            <div class="day-content" data-day="5">
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <div class="schedule-date">
+                            <span class="month">3月</span>
+                            <span class="day">25</span>
+                        </div>
+                        <div class="schedule-title">
+                            <h3>京都 🎮</h3>
+                            <p>任天堂博物館日</p>
+                            <span class="location-badge kyoto">📍 京都</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">早上</div>
+                            <div class="timeline-place">前往任天堂博物館</div>
+                            <div class="timeline-note">位於宇治市小倉</div>
+                        </div>
+                        <div class="timeline-item highlight">
+                            <div class="timeline-time">11:00</div>
+                            <div class="timeline-place">任天堂博物館 🎮</div>
+                            <div class="timeline-note warning">⚠️ 預約入場時間！</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">下午</div>
+                            <div class="timeline-place">博物館內體驗</div>
+                            <div class="timeline-note">遊戲體驗、紀念品</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">晚上</div>
+                            <div class="timeline-place">京都車站吃壽司 🍣</div>
+                            <div class="timeline-note">車站附近覓食</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel-card">
+                    <h2>🏨 今日飯店</h2>
+                    <div class="hotel-info">
+                        <div class="hotel-name">關西飯店（待確認）</div>
+                        <div class="hotel-address">📍 地址待確認</div>
+                        <div class="hotel-room">
+                            <div class="hotel-room-icon">🚪</div>
+                            <div class="hotel-room-info">
+                                <div class="hotel-room-label">房號</div>
+                                <div class="hotel-room-number">--</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 6 - 3/26 -->
+            <div class="day-content" data-day="6">
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <div class="schedule-date">
+                            <span class="month">3月</span>
+                            <span class="day">26</span>
+                        </div>
+                        <div class="schedule-title">
+                            <h3>奈良一日遊 🦌</h3>
+                            <p>小鹿與櫻花</p>
+                            <span class="location-badge kyoto">📍 奈良</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">早上</div>
+                            <div class="timeline-place">前往奈良</div>
+                            <div class="timeline-note">搭近鐵前往</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">上午</div>
+                            <div class="timeline-place">奈良公園 🦌</div>
+                            <div class="timeline-note">餵小鹿、東大寺</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">下午</div>
+                            <div class="timeline-place">吉野山 🌸</div>
+                            <div class="timeline-note">賞櫻名所（如有時間）</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">晚上</div>
+                            <div class="timeline-place">返回飯店</div>
+                            <div class="timeline-note">晚餐自理</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel-card">
+                    <h2>🏨 今日飯店</h2>
+                    <div class="hotel-info">
+                        <div class="hotel-name">關西飯店（待確認）</div>
+                        <div class="hotel-address">📍 地址待確認</div>
+                        <div class="hotel-room">
+                            <div class="hotel-room-icon">🚪</div>
+                            <div class="hotel-room-info">
+                                <div class="hotel-room-label">房號</div>
+                                <div class="hotel-room-number">--</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 7 - 3/27 -->
             <div class="day-content" data-day="7">
                 <div class="schedule-card">
                     <div class="schedule-header">
@@ -1164,25 +1218,32 @@
                             <span class="day">27</span>
                         </div>
                         <div class="schedule-title">
-                            <h3>自由活動 🎯</h3>
+                            <h3>大阪購物 🛍️</h3>
                             <p>最後採購日</p>
+                            <span class="location-badge osaka">📍 大阪</span>
                         </div>
                     </div>
+                    
                     <div class="timeline">
                         <div class="timeline-item">
                             <div class="timeline-time">全天</div>
-                            <div class="timeline-place">自由活動</div>
-                            <div class="timeline-note">補貨、逛街、放鬆</div>
+                            <div class="timeline-place">大阪購物行程</div>
+                            <div class="timeline-note">心齋橋、道頓堀、難波</div>
                         </div>
                         <div class="timeline-item">
-                            <div class="timeline-time">推薦</div>
-                            <div class="timeline-place">阿美橫町</div>
-                            <div class="timeline-note">上野便宜購物</div>
+                            <div class="timeline-time">中午</div>
+                            <div class="timeline-place">午餐</div>
+                            <div class="timeline-note">大阪美食！</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">下午</div>
+                            <div class="timeline-place">繼續逛街</div>
+                            <div class="timeline-note">藥妝、伴手禮補貨</div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-time">晚上</div>
                             <div class="timeline-place">整理行李</div>
-                            <div class="timeline-note warning">⚠️ 明天要早起！</div>
+                            <div class="timeline-note warning">⚠️ 明天要搭飛機！</div>
                         </div>
                     </div>
                 </div>
@@ -1190,21 +1251,20 @@
                 <div class="hotel-card">
                     <h2>🏨 今日飯店</h2>
                     <div class="hotel-info">
-                        <div class="hotel-name">新宿格拉斯麗酒店</div>
-                        <div class="hotel-address">📍 東京都新宿區歌舞伎町1-19-1</div>
+                        <div class="hotel-name">關西飯店（待確認）</div>
+                        <div class="hotel-address">📍 地址待確認</div>
                         <div class="hotel-room">
                             <div class="hotel-room-icon">🚪</div>
                             <div class="hotel-room-info">
                                 <div class="hotel-room-label">房號</div>
-                                <!-- ⬇️ 維護房號：修改這裡 ⬇️ -->
-                                <div class="hotel-room-number">1205</div>
+                                <div class="hotel-room-number">--</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Day 8 -->
+            <!-- Day 8 - 3/28 -->
             <div class="day-content" data-day="8">
                 <div class="schedule-card">
                     <div class="schedule-header">
@@ -1217,11 +1277,12 @@
                             <p>大阪 → 台灣</p>
                         </div>
                     </div>
+                    
                     <div class="timeline">
                         <div class="timeline-item">
                             <div class="timeline-time">早上</div>
                             <div class="timeline-place">退房、前往機場</div>
-                            <div class="timeline-note warning">⚠️ 時間待確認</div>
+                            <div class="timeline-note">搭車前往關西機場</div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-time">12:00</div>
@@ -1240,7 +1301,7 @@
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-time">17:30</div>
-                            <div class="timeline-place">搭接駁車回程</div>
+                            <div class="timeline-place">各自回家</div>
                             <div class="timeline-note">回家啦！辛苦了 🎉</div>
                         </div>
                     </div>
@@ -1296,7 +1357,7 @@
                     </div>
                     <div class="checklist-item" data-id="suica">
                         <div class="checklist-box"></div>
-                        <div class="checklist-label">Suica / PASMO 卡</div>
+                        <div class="checklist-label">Suica / ICOCA 卡</div>
                     </div>
                 </div>
                 
@@ -1328,7 +1389,7 @@
                     </div>
                     <div class="checklist-item" data-id="jacket">
                         <div class="checklist-box"></div>
-                        <div class="checklist-label">外套（3月東京還冷）</div>
+                        <div class="checklist-label">外套（3月日本還冷）</div>
                     </div>
                     <div class="checklist-item" data-id="umbrella">
                         <div class="checklist-box"></div>
@@ -1379,8 +1440,16 @@
                 <a href="tel:+81-3-2760-8801" class="emergency-item">
                     <div class="emergency-icon">🇹🇼</div>
                     <div class="emergency-text">
-                        <strong>台北駐日經濟文化代表處</strong>
+                        <strong>台北駐日代表處（東京）</strong>
                         <span>03-2760-8801</span>
+                    </div>
+                </a>
+                
+                <a href="tel:+81-6-6443-8481" class="emergency-item">
+                    <div class="emergency-icon">🇹🇼</div>
+                    <div class="emergency-text">
+                        <strong>台北駐大阪辦事處</strong>
+                        <span>06-6443-8481</span>
                     </div>
                 </a>
             </div>
@@ -1436,17 +1505,6 @@
                     <div class="phrase-pronounce">門賊以爹喔內該以西媽斯</div>
                 </div>
             </div>
-            
-            <div class="emergency-card">
-                <h2>📍 飯店資訊</h2>
-                <div class="emergency-item">
-                    <div class="emergency-icon">🏨</div>
-                    <div class="emergency-text">
-                        <strong>新宿格拉斯麗酒店</strong>
-                        <span style="font-size: 14px; color: #666;">東京都新宿區歌舞伎町1-19-1</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     
@@ -1498,9 +1556,8 @@
         const totalCount = checklistItems.length;
         document.getElementById('checklist-total').textContent = totalCount;
         
-        // 從 localStorage 讀取已勾選的項目
         function loadChecklist() {
-            const saved = localStorage.getItem('tokyo-checklist');
+            const saved = localStorage.getItem('japan-trip-checklist');
             if (saved) {
                 const checked = JSON.parse(saved);
                 checked.forEach(id => {
@@ -1511,16 +1568,14 @@
             updateProgress();
         }
         
-        // 儲存到 localStorage
         function saveChecklist() {
             const checked = [];
             document.querySelectorAll('.checklist-item.checked').forEach(item => {
                 checked.push(item.dataset.id);
             });
-            localStorage.setItem('tokyo-checklist', JSON.stringify(checked));
+            localStorage.setItem('japan-trip-checklist', JSON.stringify(checked));
         }
         
-        // 更新進度條
         function updateProgress() {
             const checkedCount = document.querySelectorAll('.checklist-item.checked').length;
             document.getElementById('checklist-count').textContent = checkedCount;
@@ -1528,7 +1583,6 @@
             document.getElementById('checklist-bar').style.width = percent + '%';
         }
         
-        // 點擊切換勾選
         checklistItems.forEach(item => {
             item.addEventListener('click', () => {
                 item.classList.toggle('checked');
@@ -1537,7 +1591,6 @@
             });
         });
         
-        // 載入時讀取
         loadChecklist();
     </script>
 </body>
